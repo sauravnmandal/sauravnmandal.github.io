@@ -4,567 +4,186 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Saurav Nakul Mandal</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --bg: #0e0e0e;
-      --surface: #161616;
-      --border: #2a2a2a;
-      --accent: #e8f94a;
-      --accent2: #4af9c8;
-      --text: #f0f0f0;
-      --muted: #888;
-      --font-head: 'Syne', sans-serif;
-      --font-body: 'DM Sans', sans-serif;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-
-    html { scroll-behavior: smooth; }
 
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-body);
-      font-size: 16px;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #222;
       line-height: 1.6;
-      overflow-x: hidden;
     }
 
-    /* NAV */
+    header {
+      background-color: #222;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 1rem;
+      color: #aaa;
+    }
+
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 2.5rem;
-      background: rgba(14,14,14,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      background-color: #333;
+      text-align: center;
+      padding: 12px;
     }
 
-    .nav-logo {
-      font-family: var(--font-head);
-      font-weight: 800;
-      font-size: 1.1rem;
-      letter-spacing: -0.02em;
-      color: var(--accent);
+    nav a {
+      color: #f5f5f5;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 0.95rem;
     }
 
-    .nav-links {
+    nav a:hover {
+      color: #f0c040;
+    }
+
+    section {
+      max-width: 800px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #222;
+      padding-bottom: 8px;
+    }
+
+    section p {
+      color: #444;
+      margin-bottom: 10px;
+    }
+
+    .skills-list {
       display: flex;
-      gap: 2rem;
+      flex-wrap: wrap;
+      gap: 10px;
       list-style: none;
     }
 
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
+    .skills-list li {
+      background-color: #222;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 4px;
       font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 0.03em;
-      transition: color 0.2s;
     }
 
-    .nav-links a:hover { color: var(--text); }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 8rem 2.5rem 4rem;
-      position: relative;
-      overflow: hidden;
+    .project {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 15px;
+      margin-bottom: 15px;
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -200px; right: -200px;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(232,249,74,0.07) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: -100px; left: -100px;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(74,249,200,0.05) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-tag {
-      display: inline-block;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      padding: 0.3rem 0.8rem;
-      border-radius: 2px;
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 0.1s;
-    }
-
-    .hero h1 {
-      font-family: var(--font-head);
-      font-size: clamp(3rem, 8vw, 7rem);
-      font-weight: 800;
-      line-height: 1.0;
-      letter-spacing: -0.03em;
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 0.25s;
-    }
-
-    .hero h1 span { color: var(--accent); }
-
-    .hero-sub {
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      color: var(--muted);
-      max-width: 520px;
-      font-weight: 300;
-      margin-bottom: 2.5rem;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 0.4s;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 0.55s;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.8rem 1.8rem;
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-decoration: none;
-      border-radius: 3px;
-      transition: all 0.2s;
-      cursor: pointer;
-      border: none;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #0e0e0e;
-    }
-
-    .btn-primary:hover {
-      background: #d4e130;
-      transform: translateY(-2px);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--text);
-      transform: translateY(-2px);
-    }
-
-    /* SECTIONS */
-    section {
-      padding: 6rem 2.5rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent2);
-      margin-bottom: 1rem;
-    }
-
-    .section-title {
-      font-family: var(--font-head);
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 2rem;
-      line-height: 1.1;
-    }
-
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: var(--border);
-      margin: 0 auto;
-    }
-
-    /* ABOUT */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-
-    .about-text {
-      color: #bbb;
-      font-weight: 300;
+    .project h3 {
       font-size: 1.05rem;
-      line-height: 1.8;
+      margin-bottom: 6px;
     }
 
-    .about-text p + p { margin-top: 1rem; }
-
-    .about-facts {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .fact {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1rem 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-
-    .fact-icon { font-size: 1.3rem; }
-
-    .fact-label {
-      font-size: 0.75rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .fact-value {
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--text);
-    }
-
-    /* SKILLS */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 1rem;
-    }
-
-    .skill-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1.2rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .skill-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-    }
-
-    .skill-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
-
-    .skill-name {
+    .project p {
       font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--text);
+      color: #555;
+      margin: 0;
     }
 
-    .skill-type {
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: 0.2rem;
+    .contact-info {
+      list-style: none;
     }
 
-    /* PROJECTS */
-    .project-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 2rem;
-      margin-bottom: 1.2rem;
-      transition: border-color 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 3px; height: 100%;
-      background: var(--accent);
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-    .project-card:hover { border-color: #3a3a3a; }
-    .project-card:hover::before { opacity: 1; }
-
-    .project-tag {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent2);
-      margin-bottom: 0.8rem;
-    }
-
-    .project-title {
-      font-family: var(--font-head);
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 0.6rem;
-    }
-
-    .project-desc {
-      color: var(--muted);
+    .contact-info li {
+      margin-bottom: 8px;
       font-size: 0.95rem;
-      font-weight: 300;
-      line-height: 1.7;
+      color: #444;
     }
 
-    .project-tech {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-top: 1.2rem;
+    .contact-info a {
+      color: #222;
     }
 
-    .tech-tag {
-      font-size: 0.75rem;
-      padding: 0.25rem 0.6rem;
-      background: #1e1e1e;
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      color: var(--muted);
-    }
-
-    /* CONTACT */
-    .contact-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 3rem;
-      text-align: center;
-    }
-
-    .contact-box p {
-      color: var(--muted);
-      font-weight: 300;
-      margin-bottom: 2rem;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .contact-links {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    /* FOOTER */
     footer {
       text-align: center;
-      padding: 2rem;
-      color: var(--muted);
+      padding: 20px;
       font-size: 0.8rem;
-      border-top: 1px solid var(--border);
-    }
-
-    /* ANIMATIONS */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 640px) {
-      nav { padding: 1rem 1.2rem; }
-      .nav-links { gap: 1rem; }
-      .hero { padding: 7rem 1.2rem 3rem; }
-      section { padding: 4rem 1.2rem; }
-      .about-grid { grid-template-columns: 1fr; }
-      .contact-box { padding: 2rem 1.2rem; }
+      color: #999;
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
+  <header>
+    <h1>Saurav Nakul Mandal</h1>
+    <p>Aspiring IT Engineer · Navi Mumbai</p>
+  </header>
+
   <nav>
-    <div class="nav-logo">SNM</div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <span class="hero-tag">Aspiring IT Engineer · Navi Mumbai</span>
-    <h1>Saurav<br/><span>Nakul</span><br/>Mandal.</h1>
-    <p class="hero-sub">I build things, break things, and obsessively analyse why digital products feel the way they do.</p>
-    <div class="hero-cta">
-      <a href="#projects" class="btn btn-primary">See my work</a>
-      <a href="#contact" class="btn btn-outline">Get in touch</a>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ABOUT -->
   <section id="about">
-    <p class="section-label">Who I am</p>
-    <h2 class="section-title">Raised in Navi Mumbai.<br/>Curious by nature.</h2>
-    <div class="about-grid">
-      <div class="about-text">
-        <p>I'm Saurav, a first year engineering student with roots in Bihar and a life built in Navi Mumbai — one of Maharashtra's fastest growing urban centres. I've always been drawn to how things work, especially in the digital world.</p>
-        <p>While most people use apps without a second thought, I find myself instinctively evaluating every interface I come across — noticing what's polished, what's broken, and what could be better. That obsession is what drives me toward IT and product development.</p>
-        <p>Outside of tech, I swim and ride motorcycles — both teach you the same thing: precision and discipline matter.</p>
-      </div>
-      <div class="about-facts">
-        <div class="fact">
-          <span class="fact-icon">📍</span>
-          <div>
-            <div class="fact-label">Location</div>
-            <div class="fact-value">Navi Mumbai, Maharashtra</div>
-          </div>
-        </div>
-        <div class="fact">
-          <span class="fact-icon">🎓</span>
-          <div>
-            <div class="fact-label">Currently</div>
-            <div class="fact-value">Pursuing B.Tech in IT</div>
-          </div>
-        </div>
-        <div class="fact">
-          <span class="fact-icon">🔍</span>
-          <div>
-            <div class="fact-label">Interested in</div>
-            <div class="fact-value">UI/UX, Product Development</div>
-          </div>
-        </div>
-        <div class="fact">
-          <span class="fact-icon">🏊</span>
-          <div>
-            <div class="fact-label">Outside tech</div>
-            <div class="fact-value">Swimming & Motorcycles</div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <h2>About Me</h2>
+    <p>Hi, I'm Saurav — a first year engineering student from Navi Mumbai with roots in Bihar. I'm pursuing a B.Tech in Information Technology and have a strong interest in how digital products are designed and built.</p>
+    <p>I naturally find myself analysing every app or website I use — noticing what works, what doesn't, and what could be improved. Outside of tech, I enjoy swimming and motorcycles.</p>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- SKILLS -->
   <section id="skills">
-    <p class="section-label">What I know</p>
-    <h2 class="section-title">Skills &amp; Tools</h2>
-    <div class="skills-grid">
-      <div class="skill-card">
-        <div class="skill-icon">🐍</div>
-        <div class="skill-name">Python</div>
-        <div class="skill-type">Programming</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🌐</div>
-        <div class="skill-name">HTML / CSS</div>
-        <div class="skill-type">Web Basics</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🔎</div>
-        <div class="skill-name">UI/UX Analysis</div>
-        <div class="skill-type">Product Thinking</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🐛</div>
-        <div class="skill-name">Bug Spotting</div>
-        <div class="skill-type">QA Mindset</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🧠</div>
-        <div class="skill-name">Logical Thinking</div>
-        <div class="skill-type">Problem Solving</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🐙</div>
-        <div class="skill-name">GitHub</div>
-        <div class="skill-type">Version Control</div>
-      </div>
-    </div>
+    <h2>Skills</h2>
+    <ul class="skills-list">
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>Python</li>
+      <li>C</li>
+      <li>UI/UX Analysis</li>
+      <li>Bug Spotting</li>
+      <li>GitHub</li>
+    </ul>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- PROJECTS -->
   <section id="projects">
-    <p class="section-label">What I've built</p>
-    <h2 class="section-title">Projects</h2>
-
-    <div class="project-card">
-      <span class="project-tag">Python · Academic</span>
-      <div class="project-title">Python Practicals — College Lab Work</div>
-      <p class="project-desc">Completed a series of Python programming practicals covering core concepts including variables, loops, functions, and data structures. Built foundational programming skills through hands-on problem solving.</p>
-      <div class="project-tech">
-        <span class="tech-tag">Python</span>
-        <span class="tech-tag">Programming Logic</span>
-      </div>
+    <h2>Projects</h2>
+    <div class="project">
+      <h3>Personal Portfolio Website</h3>
+      <p>Built this portfolio website using HTML and CSS. Hosted on GitHub Pages. My first step into web development.</p>
     </div>
-
-    <div class="project-card">
-      <span class="project-tag">UI/UX · Ongoing</span>
-      <div class="project-title">Personal Portfolio Website</div>
-      <p class="project-desc">Designed and built this personal portfolio website from scratch using HTML and CSS. Hosted on GitHub Pages. An ongoing project that I continue to update as I learn more.</p>
-      <div class="project-tech">
-        <span class="tech-tag">HTML</span>
-        <span class="tech-tag">CSS</span>
-        <span class="tech-tag">GitHub Pages</span>
-      </div>
+    <div class="project">
+      <h3>Python Lab Practicals</h3>
+      <p>Completed a series of Python programming practicals covering variables, loops, functions, and data structures as part of my engineering coursework.</p>
     </div>
-
   </section>
 
-  <div class="divider"></div>
-
-  <!-- CONTACT -->
   <section id="contact">
-    <p class="section-label">Say hello</p>
-    <h2 class="section-title">Get in Touch</h2>
-    <div class="contact-box">
-      <p>I'm always open to conversations about tech, design, or anything interesting. Drop me a message.</p>
-      <div class="contact-links">
-        <a href="mailto:saurav@email.com" class="btn btn-primary">✉️ Email Me</a>
-        <a href="https://github.com/sauravnmandal" target="_blank" class="btn btn-outline">🐙 GitHub</a>
-      </div>
-    </div>
+    <h2>Contact</h2>
+    <ul class="contact-info">
+      <li>📧 Email: <a href="mailto:saurav@email.com">saurav@email.com</a></li>
+      <li>🐙 GitHub: <a href="https://github.com/sauravnmandal" target="_blank">github.com/sauravnmandal</a></li>
+      <li>📍 Location: Navi Mumbai, Maharashtra</li>
+    </ul>
   </section>
 
   <footer>
-    <p>Built by Saurav Nakul Mandal · 2025 · Navi Mumbai</p>
+    <p>Made by Saurav Nakul Mandal · 2025</p>
   </footer>
 
 </body>
